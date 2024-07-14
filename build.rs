@@ -9,6 +9,7 @@ fn main() -> Result<(), String> {
         "cargo:rustc-link-search=native={}",
         PathBuf::from(src_dir).display()
     );
+    println!("cargo:rerun-if-changed=./libabc.a");
     println!("cargo:rustc-link-lib=static=abc");
     println!("cargo:rustc-link-lib=dylib=stdc++");
     Ok(())
