@@ -1,18 +1,20 @@
-use std::{
-    env::temp_dir,
-    ffi::{c_char, c_void, CStr, CString},
-    mem::forget,
-};
-
 use aig::Aig;
+use std::ffi::{c_char, c_void, CString};
 
 extern "C" {
     fn Abc_FrameGetGlobalFrame() -> *mut c_void;
+    fn Abc_Stop();
     fn Cmd_CommandExecute(pAbc: *mut c_void, sCommand: *const c_char) -> i32;
 }
 
 pub struct Abc {
     ptr: *mut c_void,
+}
+
+impl Drop for Abc {
+    fn drop(&mut self) {
+        unsafe { Abc_Stop() };
+    }
 }
 
 impl Abc {
