@@ -33,7 +33,7 @@ impl Abc {
     pub fn read_aig(&mut self, aig: &Aig) {
         let tmpfile = tempfile::NamedTempFile::new().unwrap();
         let path = tmpfile.path().as_os_str().to_str().unwrap();
-        aig.to_file(path);
+        aig.to_file(path, false);
         let command = format!("read_aiger {};", path);
         let command = CString::new(command).unwrap();
         let res = unsafe { Cmd_CommandExecute(self.ptr, command.as_ptr()) };
