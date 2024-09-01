@@ -1,5 +1,8 @@
 use aig::Aig;
-use std::ffi::{c_char, c_void, CString};
+use std::{
+    env,
+    ffi::{c_char, c_void, CString},
+};
 
 extern "C" {
     fn Abc_FrameGetGlobalFrame() -> *mut c_void;
@@ -31,7 +34,11 @@ impl Abc {
     }
 
     pub fn read_aig(&mut self, aig: &Aig) {
-        let tmpfile = tempfile::NamedTempFile::new_in("/tmp/rIC3/").unwrap();
+        let dir = match env::var("RIC3_TMP_DIR") {
+            Ok(d) => d,
+            Err(_) => "/tmp/rIC3".to_string(),
+        };
+        let tmpfile = tempfile::NamedTempFile::new_in(dir).unwrap();
         let path = tmpfile.path().as_os_str().to_str().unwrap();
         aig.to_file(path, false);
         let command = format!("read_aiger {};", path);
@@ -41,7 +48,11 @@ impl Abc {
     }
 
     pub fn write_aig(&mut self) -> Aig {
-        let tmpfile = tempfile::NamedTempFile::new_in("/tmp/rIC3/").unwrap();
+        let dir = match env::var("RIC3_TMP_DIR") {
+            Ok(d) => d,
+            Err(_) => "/tmp/rIC3".to_string(),
+        };
+        let tmpfile = tempfile::NamedTempFile::new_in(dir).unwrap();
         let path = tmpfile.path().as_os_str().to_str().unwrap();
         let command = format!("write_aiger {};", path);
         let command = CString::new(command).unwrap();
