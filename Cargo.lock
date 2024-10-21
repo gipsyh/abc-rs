@@ -3,8 +3,8 @@
 version = 3
 
 [[package]]
-name = "abc"
-version = "0.1.0"
+name = "abc-rs"
+version = "0.2.0"
 dependencies = [
  "aig",
  "tempfile",
@@ -25,7 +25,7 @@ dependencies = [
 
 [[package]]
 name = "aig"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "cc",
  "libc",
@@ -107,7 +107,7 @@ checksum = "78b3ae25bc7c8c38cec158d1f2757ee79e9b3740fbc7ccf0e59e4b08d793fa89"
 
 [[package]]
 name = "logic-form"
-version = "0.1.1"
+version = "0.2.0"
 dependencies = [
  "ahash",
  "giputils",

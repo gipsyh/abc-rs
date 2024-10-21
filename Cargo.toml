@@ -1,8 +1,12 @@
 [package]
-name = "abc"
-version = "0.1.0"
+name = "abc-rs"
+version = "0.2.0"
 edition = "2021"
+license = "MIT"
+description = "ABC rust bindings"
+repository = "https://github.com/gipsyh/abc-rs"
+authors = ["Yuheng Su <gipsyh.icu@gmail.com>"]
 
 [dependencies]
-aig = { path = "../aig-rs" }
+aig = { path = "../aig-rs", version = "0.2.0" }
 tempfile = "3.10.1"
