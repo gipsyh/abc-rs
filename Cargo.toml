@@ -1,6 +1,6 @@
 [package]
 name = "abc-rs"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2021"
 license = "MIT"
 description = "ABC rust bindings"
@@ -8,5 +8,8 @@ repository = "https://github.com/gipsyh/abc-rs"
 authors = ["Yuheng Su <gipsyh.icu@gmail.com>"]
 
 [dependencies]
-aig = { path = "../aig-rs", version = "0.2.1" }
+aig = { path = "../aig-rs", version = "0.2" }
 tempfile = "3.10.1"
+
+[build-dependencies]
+cmake = "0.1.50"
