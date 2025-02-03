@@ -61,3 +61,9 @@ impl Abc {
         Aig::from_file(path)
     }
 }
+
+impl Default for Abc {
+    fn default() -> Self {
+        Self::new()
+    }
+}
