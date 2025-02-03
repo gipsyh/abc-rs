@@ -9,6 +9,9 @@ fn main() -> Result<(), String> {
         dst.join("build").display()
     );
     println!("cargo:rustc-link-lib=static=abc");
+    #[cfg(target_os = "linux")]
     println!("cargo:rustc-link-lib=dylib=stdc++");
+    #[cfg(target_os = "macos")]
+    println!("cargo:rustc-link-lib=dylib=c++");
     Ok(())
 }
