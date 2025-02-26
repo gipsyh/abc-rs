@@ -1,10 +1,10 @@
 use aig::Aig;
 use std::{
     env,
-    ffi::{c_char, c_void, CString},
+    ffi::{CString, c_char, c_void},
 };
 
-extern "C" {
+unsafe extern "C" {
     fn Abc_FrameGetGlobalFrame() -> *mut c_void;
     fn Abc_Stop();
     fn Cmd_CommandExecute(pAbc: *mut c_void, sCommand: *const c_char) -> i32;
