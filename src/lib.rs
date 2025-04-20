@@ -39,9 +39,8 @@ impl Abc {
             Err(_) => "/tmp/rIC3".to_string(),
         };
         let tmpfile = tempfile::NamedTempFile::new_in(dir).unwrap();
-        let path = tmpfile.path().as_os_str().to_str().unwrap();
-        aig.to_file(path, false);
-        let command = format!("read_aiger {};", path);
+        aig.to_file(tmpfile.path(), false);
+        let command = format!("read_aiger {};", tmpfile.path().display());
         let command = CString::new(command).unwrap();
         let res = unsafe { Cmd_CommandExecute(self.ptr, command.as_ptr()) };
         assert!(res == 0, "abc read aig failed");
